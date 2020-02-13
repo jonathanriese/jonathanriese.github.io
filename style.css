@@ -1,5 +1,33 @@
 body {
     background-color: black;
     color: white;
-    font-family: sans-serif;
+    font-family: 'tomorrow', sans-serif;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 16px 16px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+h1, a h1 {
+    font-size: 1.5rem;
+}
+
+a:hover {
+    color: rgb(111, 0, 255);
+}
+
+main {
+    padding-left: 16px;
+}
+
+a h1 {
+    font-weight: 400;;
 }
