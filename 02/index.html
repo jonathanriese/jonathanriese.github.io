@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <title>XR #02</title>
+  <meta name="description" content="XR #02">
+  <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+  <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+
+</head>
+
+<body>
+  <a-scene>
+    <a-assets>
+      <a-asset-item id="monster" src="assets/models/monster/scene.gltf"></a-asset-item>
+      <a-asset-item id="camel" src="assets/models/camel/scene.gltf"></a-asset-item>
+      <a-asset-item id="eagle" src="assets/models/eagle/scene.gltf"></a-asset-item>
+    </a-assets>
+
+    <a-light type="ambient" intensity="0.5"></a-light>
+    <a-box position="0 2 -20" scale="4 4 4" color="#332f2b" animation="property: emissive; from: #000; to: #fff; dir: alternate; loop: true; dur: 10000; easing: easeInOutQuad;">
+      <a-light type="point" animation="property: intensity; from: 0; to: 8; dir: alternate; loop: true; dur: 10000; easing: easeInOutQuad;"></a-light>
+    </a-box>
+    <a-entity position="0 2 -20" rotation="0 0 0" animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear;">
+      <a-torus color="#332f2b" position="7 0 0" scale="0.4 0.4 0.4" rotation="0 0 0" radius-tubular="0.05" segments-radial="4" metalness="0" animation="property: rotation; to: 0 360 0; loop: true; dur: 900; easing: linear;">
+        <a-sound src="src: url(assets/sound/ambient.mp3)" autoplay="true"></a-sound>
+      </a-torus>
+      <a-torus color="#332f2b" position="7 0 0" scale="0.4 0.4 0.4" rotation="0 0 0" radius-tubular="0.05" segments-radial="4" metalness="0" animation="property: rotation; to: 360 0 0; loop: true; dur: 900; easing: linear;"></a-torus>
+    </a-entity>
+    <a-entity position="0 0 20" rotation="0 0 0" animation="property: rotation; to: 0 -360 0; loop: true; dur: 50000; easing: linear;">
+      <a-gltf-model position="3 0 0" src="#monster" scale="0.01 0.01 0.01" animation-mixer></a-gltf-model>
+    </a-entity>
+    <a-gltf-model src="#camel" scale="0.01 0.01 0.01" animation="property: position; from: 60 0 -100; to: 60 0 100; loop: true; dur: 100000; easing: linear;" animation-mixer></a-gltf-model>
+    <a-gltf-model src="#camel" scale="0.008 0.008 0.008" animation="property: position; from: 65 0 -112; to: 65 0 96; loop: true; dur: 100000; easing: linear;" animation-mixer></a-gltf-model>
+    <a-gltf-model src="#eagle" scale="0.008 0.008 0.008" rotation="0 90 0" animation="property: position; from: -200 30 -50; to: 200 30 -50; dur: 50000; easing: linear;" animation-mixer></a-gltf-model>
+    <a-entity environment="ground: hills; ground-texture: none; ground-color: #332f2b; lighting: none; skyColor: #000; sky-type: gradient;"></a-entity>
+
+  </a-scene>
+</body>
+
+</html>
