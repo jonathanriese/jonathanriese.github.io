@@ -14,9 +14,11 @@ nav {
 a {
     color: white;
     text-decoration: none;
+    font-weight: 400;
+    font-size: 1rem;
 }
 
-h1, a h1 {
+h1 {
     font-size: 1.5rem;
 }
 
@@ -26,8 +28,15 @@ a:hover {
 
 main {
     padding-left: 16px;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+main a {
+    padding-bottom: 1rem;
 }
 
 a h1 {
-    font-weight: 400;;
+    font-weight: 400;
+    font-size: 1rem;
 }
