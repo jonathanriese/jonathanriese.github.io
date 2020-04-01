@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>XR01 • Night</title>
+    <meta name="description" content="XR01 • Dark">
+    <link rel="icon" href="../electric-indigo.png"/>
+    <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-randomizer-components@3.0.2/dist/aframe-randomizer-components.min.js"></script>
+    <script src="https://unpkg.com/aframe-entity-generator-component@3.0.2/dist/aframe-entity-generator-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+  </head>
+
+  <body>
+    <a-scene background="color: #000001">
+
+      <a-assets>
+        <a-mixin id="sphere" geometry="primitive: sphere; radius: 0.5" material="color: #00fdb6"></a-mixin>
+        <a-mixin id="cone" geometry="primitive: cone; radius-bottom: 1;" material="color: #be37f4" random-scale="min: 0.5 1 0.5; max: 0.7 3 0.7;" random-position="min: -100 -0.5 -100; max: 100 0.3 100"></a-mixin>
+        <a-mixin id="cylinder" geometry="primitive: cylinder; segments-radial: 6; height: 5;" material="color: #64c7e8" random-position="min: -100 0 -100; max: 100 0 100" random-rotation="min: -50 0 0; max: 50 360 0"></a-mixin>
+        <a-mixin id="circle" geometry="primitive: sphere" postion="0 -0.19 0" scale="0.5 0.01 0.5" rotation="0 0 0"></a-mixin>
+        <a-mixin id="random-1" random-position="min: -100 -0.3 -100; max: 100 0 100"></a-mixin>
+        <a-mixin id="bubble" material="color: #ffc0d1;"></a-mixin>
+        <a-mixin id="brighten-green" animation__brighten="property: material.emissive; from: #000; to: #00fdb6; dir: alternate; loop: true; dur: 2500; easing: easeInOutQuad;"></a-mixin>
+        <a-mixin id="brighten-violet" animation__brighten="property: material.emissive; from: #be37f4; to: #000; dir: alternate; loop: true; dur: 2500; easing: easeInOutQuad;"></a-mixin>
+        <a-mixin id="brighten-blue" animation__brighten="property: material.emissive; from: #000; to: #64c7e8; dir: alternate; loop: true; dur: 3750; easing: easeInOutQuad;"></a-mixin>
+        <audio id="waves" src="ambient.wav" preload="auto"></audio>
+      </a-assets>
+
+
+      <a-entity camera look-controls wasd-controls="acceleration: 100" position="0 1 10" sound="src: #waves; autoplay: true; loop: true">
+        <a-entity cursor="fuse: true; fuseTimeout: 500"
+                position="0 0 -1"
+                geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                material="color: white; shader: flat">
+        </a-entity>
+       </a-entity>
+
+      <a-entity entity-generator="mixin: sphere random-1 brighten-green; num: 120;"></a-entity>
+      <a-entity entity-generator="mixin: cone brighten-violet; num: 70;"></a-entity>
+      <a-entity entity-generator="mixin: cylinder brighten-blue; num: 30;"></a-entity>
+
+        <a-entity position="0 10 0" material="color: #ffffff; emissive: #bbbbbb" geometry="primitive: torusKnot; radius: 1" animation__q="property: geometry.q; from: 1; to: 10; dir: alternate; loop: true; dur: 40000; easing: easeInOutQuad;" animation__p="property: geometry.p; from: 1; to: 10; dir: alternate; loop: true; dur: 20000; easing: easeInOutQuad;" animation__rotation="property: rotation; from: 0 0 0; to: 360 360 0; loop: true; dur: 10000; easing: linear;" link="href: ../02/index.html;">
+          <a-entity light="intensity: 0.5"></a-entity>
+        </a-entity>
+        <a-plane position="0 -0.2 0" color="#000000" height="500" width="500" rotation="-90 0 0"></a-plane>
+        <a-entity positon="0 2 0" rotation="270 0 0" ocean="amplitude: 0.05; density: 100; opacity: 0.5; amplitudeVariance: 0.05; color: #000; depth: 500; width: 500;"></a-entity>
+      </a-scene>
+  </body>
+</html>
