@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>XR • Natural</title>
+    <meta name="description" content="XR01 • Dark">
+    <link rel="icon" href="../electric-indigo.png"/>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-randomizer-components@3.0.2/dist/aframe-randomizer-components.min.js"></script>
+    <script src="https://unpkg.com/aframe-entity-generator-component@3.0.2/dist/aframe-entity-generator-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+  </head>
+
+  <body>
+    <a-scene>
+
+      <a-assets>
+        <a-mixin id="breathe1" animation__breathe="property: scale; from: 2 2 2; to: 2.5 2.5 2.5; dir: alternate; loop: true; dur: 5000; easing: easeInOutQuad;"></a-mixin>
+        <a-mixin id="breathe2" animation__breathe="property: position; from: 0 1 0; to: 0 0.5 0; dir: alternate; loop: true; dur: 5000; easing: easeInOutQuad; delay: 30000;"></a-mixin>
+        <a-mixin id="breathe3" animation__breathe="property: scale; from: 5.5 2 5.5; to: 6 2 6; dir: alternate; loop: true; dur: 10000; easing: easeInOutQuad;"></a-mixin>
+
+        <a-mixin id="sphere" geometry="primitive: sphere; radius: 0.5"></a-mixin>
+        <a-mixin id="cone" geometry="primitive: cone; radius-bottom: 1;" material="color: #be37f4" random-scale="min: 0.5 1 0.5; max: 0.7 2 0.7;" random-position="min: -100 -0.5 -100; max: 100 0.3 100" animation__glow="property: material.emissive; from: #000; to: #be37f4; dur: 10000; easing: easeInOutQuad; delay: 35000"></a-mixin>
+        <a-mixin id="giant" geometry="primitive: sphere; radius: 5" material="color: black" random-position="min: -100 40 100; max: -300 80 -100;"></a-mixin>
+        <a-mixin id="cylinder" geometry="primitive: cylinder; segments-radial: 6; height: 5;" material="color: #64c7e8" random-position="min: -100 0 -100; max: 100 2 100" random-rotation="min: -50 0 0; max: 50 360 0" animation__glow="property: material.emissive; from: #000; to: #64c7e8; dur: 20000; easing: easeInOutQuad; delay: 35000"></a-mixin>
+        <a-mixin id="plateau" geometry="primitive: cylinder; segments-radial: 12; height: 1;" material="color: #ffad61" random-position="min: -100 -0.7 -100; max: 100 1 100"></a-mixin>
+        <a-mixin id="random-1" random-position="min: -100 -0.3 -100; max: 100 0.3s 100"></a-mixin>
+
+        <a-mixin id="yellow-1" material="color: #434500"></a-mixin>
+        <a-mixin id="brighten-yellow" animation__brighten="property: material.emissive; from: #f6ff00; to: #434500; dir: alternate; loop: true; dur: 2500; easing: easeInOutQuad; delay: 45000" animation__glow="property: material.emissive; from: #000; to: #f6ff00; dur: 5000; easing: easeInOutQuad; delay: 40000"></a-mixin>
+        <a-mixin id="brighten-yellow2" animation__brighten="property: material.emissive; from: #f6ff00; to: #434500; dir: alternate; loop: true; dur: 2500; easing: easeInOutQuad; delay: 47000" animation__glow="property: material.emissive; from: #000; to: #f6ff00; dur: 5000; easing: easeInOutQuad; delay: 42000"></a-mixin>
+        <a-mixin id="brighten-yellow3" animation__brighten="property: material.emissive; from: #f6ff00; to: #434500; dir: alternate; loop: true; dur: 2500; easing: easeInOutQuad; delay: 49000" animation__glow="property: material.emissive; from: #000; to: #f6ff00; dur: 5000; easing: easeInOutQuad; delay: 44000"></a-mixin>
+
+        <a-mixin id="brighten-violet" animation__brighten="property: material.emissive; from: #be37f4; to: #470561; dir: alternate; loop: true; dur: 2500; easing: easeInOutQuad; delay: 45000"></a-mixin>
+        <a-mixin id="brighten-blue" animation__brighten="property: material.emissive; from: #64c7e8; to: #000; dir: alternate; loop: true; dur: 5000; easing: easeInOutQuad; delay: 55000"></a-mixin>
+
+        <a-mixin id="brighten-orange" animation__brighten="property: material.emissive; from: #ff600a; to: #662400; dir: alternate; loop: true; dur: 10000; easing: easeInOutQuad; delay: 60000"  animation__glow="property: material.emissive; from: #000; to: #ff600a; dur: 20000; easing: easeInOutQuad; delay: 40000"></a-mixin>
+        <a-mixin id="brighten-orange2" animation__brighten="property: material.emissive; from: #ff600a; to: #662400; dir: alternate; loop: true; dur: 10000; easing: easeInOutQuad; delay: 65000"  animation__glow="property: material.emissive; from: #000; to: #ff600a; dur: 20000; easing: easeInOutQuad; delay: 45000"></a-mixin>
+
+        <audio id="waves" src="ambient.wav" preload="true"></audio>
+
+      </a-assets>
+
+
+      <a-entity camera look-controls wasd-controls="acceleration: 100" position="0 2 10" sound="src: #waves; autoplay: true; loop: 1">
+        <a-light type="point" animation="property: intensity; from: 0.3; to: 0.1; dir: alternate; loop: true; dur: 5000; easing: easeInOutQuad;"></a-light>
+        <a-entity cursor="fuse: true; fuseTimeout: 500"
+                position="0 0 -1"
+                geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                material="color: white; shader: flat">
+        </a-entity>
+       </a-entity>
+
+
+
+       <a-entity entity-generator="mixin: sphere brighten-yellow random-1 yellow-1; num: 100;" position="0 -0.7 0" animation__growth="property: position; from: 0 -0.5 0; to: 0 0 0; loop: false; dur: 20000; delay: 20000; easing: easeOutQuad"></a-entity>
+       <a-entity entity-generator="mixin: sphere brighten-yellow2 random-1 yellow-1; num: 100;" position="0 -0.7 0" animation__growth="property: position; from: 0 -0.5 0; to: 0 0 0; loop: false; dur: 20000; delay: 30000; easing: easeOutQuad"></a-entity>
+       <a-entity entity-generator="mixin: sphere brighten-yellow3 random-1 yellow-1; num: 100;" position="0 -0.7 0" animation__growth="property: position; from: 0 -0.5 0; to: 0 0 0; loop: false; dur: 20000; delay: 40000; easing: easeOutQuad"></a-entity>
+
+       <a-entity entity-generator="mixin: brighten-violet cone; num: 100;" position="0 -2 0" animation__growth="property: position; from: 0 -2 0; to: 0 1 0; loop: false; dur: 25000; delay: 5000" mixin="breathe2"></a-entity>
+       <a-entity entity-generator="mixin: breathe3 plateau brighten-orange; num: 8;" position="0 -2 0" animation__growth="property: position; from: 0 -2 0; to: 0 0.5 0; loop: false; dur: 40000; delay: 7000;"></a-entity>
+       <a-entity entity-generator="mixin: breathe3 plateau brighten-orange2; num: 8;" position="0 -2 0" animation__growth="property: position; from: 0 -2 0; to: 0 0.5 0; loop: false; dur: 40000; delay: 15000;"></a-entity>
+       <a-entity entity-generator="mixin: cylinder breathe1 brighten-blue; num: 30;" animation__growth="property: position; from: 0 -3 0; to: 0 0 0; loop: false; dur: 15000;"></a-entity>
+       <a-entity entity-generator="mixin: giant; num: 10;" animation__growth="property: position; from: -100 0 0; to: 500 0 0; loop: false; dur: 120000; delay: 2000;"></a-entity>
+
+       <a-entity environment="ground: hills; ground-texture: none; groundYScale: 5; playArea: 0.7; ground-color: #002945; horizonColor: #001f33; lighting: none; skyColor: #a6fffe; sky-type: gradient;"
+       animation="property: environment.ground-color; from: blue; to: yellow; dir: alternate; loop: true; dur: 12s000; easing: easeInOutQuad;"></a-entity>
+       <!-- <a-entity environment="ground: canyon; groundTexture: none; groundYScale: 5; groundColor: #000010; horizonColor: #fff; skyType: color; skyColor: #8ee8ed;"></a-entity> -->
+
+
+      </a-scene>
+  </body>
+</html>
