@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototype A</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+</head>
+<body>
+    <a-assets>
+        <video id="video" style="display:none" autoplay loop crossorigin="anonymous" playsinline webkit-playsinline>
+            <source type="video/mp4" src="assets/panorama_waterfall.mp4" />
+        </video>
+    </a-assets>
+    <a-scene background="color: black">
+        <!-- <a-curvedimage src="#video" height="3" radius="3" position="0 1.5 0" theta-length="330"></a-curvedimage> -->
+        <a-entity material="shader: flat; side: double; src: #video" geometry="primitive: cylinder; radius: 5; height: 4; open-ended: true; theta-length: 330; theta-start: 15" position="0 2 0" rotation="0 0 0" scale="1 1 1"></a-entity>
+        <a-entity material="shader: flat; color: black" geometry="primitive: cylinder; radius: 5.01; height: 4; open-ended: true; theta-length: 330; theta-start: 15" position="0 2 0" rotation="0 0 0" scale="1 1 1"></a-entity>
+        <a-entity material="shader: flat; color: #111" geometry="primitive: circle; radius: 50" position="0 0 0" rotation="90 0 0"></a-entity>
+        <a-entity material="color: #111; side: double;" geometry="primitive: circle; radius: 50" position="0 0 4" rotation="90 0 0"></a-entity>
+    </a-scene>
+</body>
+</html>
